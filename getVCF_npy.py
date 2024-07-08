@@ -11,7 +11,6 @@ def get_filelist(path):
                 Filelist.append(os.path.join(home, filename))
     return Filelist
 
-
 def transformer_CN_2_matrix(data_all_chrom):
     data_all = []
     for data in data_all_chrom:
@@ -57,7 +56,8 @@ def transformer_SNV_2_matrix(data_all_chrom):
     data_all = data_all / 2
     return data_all,maxx, minn
 
-def get_cn_npy(file_list):
+def get_CN_GroundTruth(path1):
+    file_list = get_filelist(path1)
     sample = []
     maxx = 0
     minn = 1000
@@ -89,10 +89,7 @@ def get_snv_npy(file_list):
                 sample = np.concatenate((sample, matrix_all_chrom), axis=0)
     return sample
 
-def get_pre_sample():
-    pass
-
-def get_input_groundtruth(path1):
+def get_SNP_groundtruth(path1):
     file_list = get_filelist(path1)
     input = get_snv_npy(file_list)
     path2 = path1 + '/groundTruth.npy'
@@ -106,27 +103,21 @@ def get_input_groundtruth(path1):
 
 def merge():
     path1 = 'D:/Pycharm/TranVAE/vcf/v1r1_normal_60'
-    file_list = get_filelist(path1)
-    sample1,maxx,minn = get_cn_npy(file_list)
+    sample1,maxx,minn = get_CN_GroundTruth(path1)
     path2 = 'D:/Pycharm/TranVAE/vcf/v1r2_normal_60'
-    file_list = get_filelist(path2)
-    sample2,maxx,minn  = get_cn_npy(file_list)
+    sample2,maxx,minn  = get_CN_GroundTruth(path2)
     sample = np.concatenate((sample1, sample2), axis=0)
     path3 = 'D:/Pycharm/TranVAE/vcf/v1r3_normal_60'
-    file_list = get_filelist(path3)
-    sample3,maxx,minn = get_cn_npy(file_list)
+    sample3,maxx,minn = get_CN_GroundTruth(path3)
     sample = np.concatenate((sample, sample3), axis=0)
     path3 = 'D:/Pycharm/TranVAE/vcf/v2r1_normal_60'
-    file_list = get_filelist(path3)
-    sample4,maxx,minn = get_cn_npy(file_list)
+    sample4,maxx,minn = get_CN_GroundTruth(path3)
     sample = np.concatenate((sample, sample4), axis=0)
     path3 = 'D:/Pycharm/TranVAE/vcf/v2r3_normal_60'
-    file_list = get_filelist(path3)
-    sample5,maxx,minn = get_cn_npy(file_list)
+    sample5,maxx,minn = get_CN_GroundTruth(path3)
     sample = np.concatenate((sample, sample5), axis=0)
     path3 = 'D:/Pycharm/TranVAE/vcf/v3r3_normal_60'
-    file_list = get_filelist(path3)
-    sample6,maxx,minn = get_cn_npy(file_list)
+    sample6,maxx,minn = get_CN_GroundTruth(path3)
     sample = np.concatenate((sample, sample6), axis=0)
     sample = sample.astype(np.float32)
     return sample,maxx,minn
@@ -134,30 +125,30 @@ def merge():
 def merge_SNV():
     path1 = 'D:/Pycharm/TranVAE/vcf/v1r1_B_60'
     # file_list = get_filelist(path1)
-    sample1,truth1 = get_input_groundtruth(path1)
+    sample1,truth1 = get_SNP_groundtruth(path1)
     path2 = 'D:/Pycharm/TranVAE/vcf/v1r2_A_30'
     # file_list = get_filelist(path2)
-    sample2,truth2 = get_input_groundtruth(path2)
+    sample2,truth2 = get_SNP_groundtruth(path2)
     sample = np.concatenate((sample1, sample2), axis=0)
     truth = np.concatenate((truth1, truth2), axis=0)
     path3 = 'D:/Pycharm/TranVAE/vcf/v1r3_A_30'
-    sample3, truth3 = get_input_groundtruth(path3)
+    sample3, truth3 = get_SNP_groundtruth(path3)
     sample = np.concatenate((sample, sample3), axis=0)
     truth = np.concatenate((truth, truth3), axis=0)
     path3 = 'D:/Pycharm/TranVAE/vcf/v2r1_A_30'
-    sample4, truth4 = get_input_groundtruth(path3)
+    sample4, truth4 = get_SNP_groundtruth(path3)
     sample = np.concatenate((sample, sample4), axis=0)
     truth = np.concatenate((truth, truth4), axis=0)
     path3 = 'D:/Pycharm/TranVAE/vcf/v2r3_A_30'
-    sample5, truth5 = get_input_groundtruth(path3)
+    sample5, truth5 = get_SNP_groundtruth(path3)
     sample = np.concatenate((sample, sample5), axis=0)
     truth = np.concatenate((truth, truth5), axis=0)
     path3 = 'D:/Pycharm/TranVAE/vcf/v3r3_A_30'
-    sample6, truth6 = get_input_groundtruth(path3)
+    sample6, truth6 = get_SNP_groundtruth(path3)
     sample = np.concatenate((sample, sample6), axis=0)
     truth = np.concatenate((truth, truth6), axis=0)
     path3 = 'D:/Pycharm/TranVAE/vcf/v2r1_B_60'
-    sample7, truth7 = get_input_groundtruth(path3)
+    sample7, truth7 = get_SNP_groundtruth(path3)
     sample = np.concatenate((sample, sample7), axis=0)
     truth = np.concatenate((truth, truth7), axis=0)
     sample = np.concatenate((sample, truth), axis=0)
