@@ -1,9 +1,6 @@
 """
-Main function for arguments parsing
-Authors: Dan Haramati, Nofit Segal
+Authors: GY-seeker
 """
-# imports
-import torch
 import argparse
 from VAEManager import TrainPrediction
 
