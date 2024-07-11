@@ -24,7 +24,7 @@ If the samples include matched normal and tumor sequencing data, it is recommend
 ```
 After completing the above steps, the ```.vcf``` file can be converted to a ```.npy``` file, skipping the STEP 2 (Simualte Normal Samples), and proceeding directly to the inference task in the STEP 3.
 ### 1.2 Calling Somatic SNP whit Tumor samples
-If the sample does not include normal sample data, we recommend using HaplotypeCaller to perform SNP detection on the sequencing data. And use our xxxx.py method to generate normal sample data.
+If the sample does not include normal sample data, we recommend using HaplotypeCaller to perform SNP detection on the sequencing data. And use our simulate_normal_samples.py method to generate normal sample data.
 ```bash
     gatk HaplotypeCaller 
     -R reference.fasta  # Reference genome file
@@ -34,6 +34,7 @@ If the sample does not include normal sample data, we recommend using HaplotypeC
     --output-mode EMIT_ALL_SITES  # Output all sites including those without mutations
 ```
 ### 1.3 change .vcf to .npy
+The vcfTonpy.py file can be used to convert ```.vcf``` data into ```.npy``` format data.
 
 ## 2. Simualte Normal Samples
 
