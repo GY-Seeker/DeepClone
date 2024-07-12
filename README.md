@@ -45,9 +45,18 @@ The vcfTonpy.py file can be used to convert ```.vcf``` data into ```.npy``` form
     python vcfTonpy.py -p /path/to/dict/of/vcf
 ```
 ## 2. Simualte Normal Samples
-Simulate the SNP or CN information of normal samples using imite_normal_stamples.py .
+Simulate the SNP or CN information of normal samples using ```simulate_normal_stamples.py``` .
 
-### 2.1 Quick Start
+### 2.1 Parameter meaning
+```simulate_normal_stamples.py``` has 8 parameters
+  - epoch. The number of iterations during neural network training ,default=200)
+  - batch. The number of a batch in training data, default=64
+  - learn_rate.
+  - genomatic_length. The length of gene fragments,Different based on data from WGS and WES. WGS:1000~300, WES:300~1000. Default:2048
+  - latent_dim. The value between half of genomatic_length and genomatic_length. The smaller the latent_dim, the less memory is occupied and the poorer the simulation ability. The lager the latent_dim, the more memory is occupied, and the better the simulation ability. default:1024
+  - data_path. The folder path for ```.npy``` files
+  - data_type. 'CN' (Copy Number) or 'SNV' (Single Nucleotide Variate)
+  - mode. Running mode, 'train' or 'predict'.
 
 ### 2.2 Train Your Own Data
 
