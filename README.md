@@ -1,6 +1,7 @@
 # DeepClone: A New Approach for Inferring Cancer Subclone Populations Using Neural Networks
 Yang Guo, Peng Nie*
 ***
+## 
 ## 1. Data Preprocessing
 The [GATK4](https://github.com/broadinstitute/gatk) is used as a method for detecting base mutations during the preprocessing stage. 
 ### 1.1 Calling Somatic SNP whit Tumor and Normal samples
@@ -33,9 +34,12 @@ If the sample does not include normal sample data, we recommend using HaplotypeC
     -ERC GVCF  # Emit reference confidence scores, producing a gVCF file
     --output-mode EMIT_ALL_SITES  # Output all sites including those without mutations
 ```
+
 ### 1.3 change .vcf to .npy
 The vcfTonpy.py file can be used to convert ```.vcf``` data into ```.npy``` format data.
-
+```bash
+    python vcfTonpy.py -p /path/to/dict/of/vcf
+```
 ## 2. Simualte Normal Samples
 
 ### 2.1 Quick Start
