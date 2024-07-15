@@ -45,10 +45,10 @@ The vcfTonpy.py file can be used to convert ```.vcf``` data into ```.npy``` form
     python vcfTonpy.py -p /path/to/dict/of/vcf
 ```
 ## 2. Simualte Normal Samples
-Simulate the SNP or CN information of normal samples using ```simulate_normal_stamples.py``` .
+Simulate the SNP or CN information of normal samples using ```simulate_normal_samples.py``` .
 
 ### 2.1 Parameter meaning
-```simulate_normal_stamples.py``` has 8 parameters
+```simulate_normal_samples.py``` has 8 parameters
   - epoch. The number of iterations during neural network training ,default=200)
   - batch. The number of a batch in training data, default=64
   - learn_rate.
@@ -59,9 +59,43 @@ Simulate the SNP or CN information of normal samples using ```simulate_normal_st
   - mode. Running mode, 'train' or 'predict'.
 
 ### 2.2 Train Your Own Data
-
+Translation: Using ```simulate_normal_samples.py```, you can train simulated samples based on your mutation detection data. Refer to the following script.
+```bash
+# Example with all parameters
+    python simulate_normal_samples.py 
+    -e 200 
+    -b 64 
+    -lr 0.02 
+    -g 2048 
+    -ld 1024 
+    -p /path/to/.npy/dict/ 
+    -dt SNV
+    -m train 
+# Example with required parameters.
+    python simulate_normal_samples.py 
+    -p /path/to/.npy/dict/ 
+    -dt SNV
+    -m train 
+```
 ### 2.3 Prediction
-
+Translation: Using ```simulate_normal_samples.py```, you can predict simulated samples based on your mutation detection data. 
+It is worth noting that during the prediction process, the ```batch_size```, ```genomatic_length```, and ```latent_dim``` need to remain consistent with those used during training.
+Refer to the following script.
+```bash
+# Example with all parameters
+    python simulate_normal_samples.py 
+    -b 64 
+    -g 2048 
+    -ld 1024 
+    -p /path/to/.npy/dict/ 
+    -dt SNV
+    -m predict 
+# Example with required parameters.
+    python simulate_normal_samples.py 
+    -p /path/to/.npy/dict/ 
+    -dt SNV
+    -m predict 
+```
 ## 3. Inferring Subclonal Populations
 
 ### 3.1 Quick Start

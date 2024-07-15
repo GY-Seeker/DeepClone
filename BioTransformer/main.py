@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 
-import drow
+# import drow
 from BioTransformer.setting import *
 import torch.optim as optim # 导入优化器
 from BioTransformer.Transformer import Transformer
@@ -17,7 +17,7 @@ from BioTransformer.Corpus import TranslationCorpus
 # corpus = TranslationCorpus()
 # enc_inputs, dec_inputs, target_batch = corpus.make_Tensor() # 创建训练数据
 # del corpus
-def train(enc_inputs,dec_inputs,target_batch):
+def train(enc_inputs,dec_inputs,target_batch,save_path):
     model = Transformer() # 创建模型实例
     model = model.cuda()
     criterion = nn.MSELoss() # 损失函数
@@ -62,7 +62,7 @@ def train(enc_inputs,dec_inputs,target_batch):
         if test_max > test_loss:
             test_max = test_loss
             test = str(test_loss.item())
-            model.save(test)
+            model.save(save_path+'/'+test)
 
 def MSE(y, t):
     # 形参t代表训练数据（监督数据）（真实）
@@ -81,9 +81,9 @@ def sorted(arr,unique_elements):
     arr = arr.astype(int)
     return arr
 
-def predict(path1):
+def predict(path1,encode_path):
     print(path1)
-    corpus = TranslationCorpus()
+    corpus = TranslationCorpus(encode_path)
     inputdata, groundTruth = corpus.get_org_file(path1)
     # corpus.make_tensor_2(path1)
     enc_inputs,_, target_batch = corpus.make_Tensor(path1)
@@ -184,17 +184,17 @@ def predict(path1):
 #
 # #
 # # ERR5714649
-path1 = 'D:/Pycharm/TranVAE/vcf/v3r3_A_30_chr1'
-predict(path1)
-path1 = 'D:/Pycharm/TranVAE/vcf/v1r2_A_30'
-predict(path1)
-path1 = 'D:/Pycharm/TranVAE/vcf/v1r3_A_30'
-predict(path1)
-path1 = 'D:/Pycharm/TranVAE/vcf/v2r1_A_30'
-predict(path1)
-path1 = 'D:/Pycharm/TranVAE/vcf/v2r1_B_60'
-predict(path1)
-path1 = 'D:/Pycharm/TranVAE/vcf/v2r3_A_30'
-predict(path1)
-path1 = 'D:/Pycharm/TranVAE/vcf/v3r3_A_30'
-predict(path1)
+# path1 = 'D:/Pycharm/TranVAE/vcf/v3r3_A_30_chr1'
+# predict(path1)
+# path1 = 'D:/Pycharm/TranVAE/vcf/v1r2_A_30'
+# predict(path1)
+# path1 = 'D:/Pycharm/TranVAE/vcf/v1r3_A_30'
+# predict(path1)
+# path1 = 'D:/Pycharm/TranVAE/vcf/v2r1_A_30'
+# predict(path1)
+# path1 = 'D:/Pycharm/TranVAE/vcf/v2r1_B_60'
+# predict(path1)
+# path1 = 'D:/Pycharm/TranVAE/vcf/v2r3_A_30'
+# predict(path1)
+# path1 = 'D:/Pycharm/TranVAE/vcf/v3r3_A_30'
+# predict(path1)
