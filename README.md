@@ -107,5 +107,23 @@ Refer to the following script.
   - mode, Running mode, optional 'train' or 'predict'.
 
 ### 3.2 Train Your Own Data
-    
+Using ```inferring_subclone_populations.py```, you can classify subclone populations.
+```bash
+# Example with all parameters
+    python inferring_subclone_populations.py 
+    -dp /path/to/.npy/dict/ 
+    -gt /path/to/.npy/(goundTruth)
+    -ed /path/to/weight/of/simulate_mode/
+    -wp /path/to/save_weight/
+    -m train
+```
 ### 3.3 Prediction
+```bash
+# Example with all parameters
+    python inferring_subclone_populations.py 
+    -dp /path/to/.npy/dict/ 
+    -gt /path/to/.npy/(goundTruth)
+    -ed /path/to/weight/of/simulate_mode/
+    -wp /path/to/save_weight/
+    -m predict
+```
