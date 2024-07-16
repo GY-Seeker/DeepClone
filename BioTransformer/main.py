@@ -81,12 +81,12 @@ def sorted(arr,unique_elements):
     arr = arr.astype(int)
     return arr
 
-def predict(path1,encode_path):
+def predict(path1,encode_path,ground_path):
     print(path1)
     corpus = TranslationCorpus(encode_path)
     inputdata, groundTruth = corpus.get_org_file(path1)
     # corpus.make_tensor_2(path1)
-    enc_inputs,_, target_batch = corpus.make_Tensor(path1)
+    enc_inputs,_, target_batch = corpus.make_Tensor(path1,ground_path)
     # train(enc_inputs,dec_inputs, target_batch)
     model = Transformer() # 创建模型实例
     model = model.cuda()

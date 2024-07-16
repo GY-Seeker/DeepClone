@@ -17,10 +17,9 @@ class TranslationCorpus:
         self.geno_channel = geno_channel
         self.weight_path = weight_path
 
-    def getInput(self,path1):
+    def getInput(self,path1,path2):
         file_list = gvcf.get_filelist(path1)
         input = gvcf.get_snv_npy(file_list)
-        path2 = path1+'/groundTruth.npy'
         gt = np.load(path2)
         gt = gt.reshape([-1,2048])
         groundTruth = copy.deepcopy(input)
@@ -60,11 +59,11 @@ class TranslationCorpus:
         vae.eval()
         Decode_data = vae(data)
         return Decode_data
-
-    def make_Tensor(self,path1='D:/Pycharm/TranVAE/vcf/v1r1_B_60'):
+    # ='D:/Pycharm/TranVAE/vcf/v1r1_B_60'
+    def make_Tensor(self,path1,path2):
         input_batch,target_batch = [],[]
         # 随机选择句子索引
-        input, groundTruth = self.getInput(path1)
+        input, groundTruth = self.getInput(path1,path2)
         for i in range(0,input.shape[0],batch_sizes):
             input_tmp = input[i:(i+batch_sizes),:,:]
             input_tmp = np.expand_dims(input_tmp, axis=1)
@@ -84,8 +83,8 @@ class TranslationCorpus:
         # target_batch = target_batch.long()
         return input_batch, input_batch, target_batch
 
-    def get_org_file(self,path1='D:/Pycharm/TranVAE/vcf/v1r1_B_60'):
-        input, groundTruth = self.getInput(path1)
+    def get_org_file(self,path1,path2):
+        input, groundTruth = self.getInput(path1,path2)
         return input,groundTruth
 
     def make_SubClone(self,input):

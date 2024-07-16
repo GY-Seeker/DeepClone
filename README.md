@@ -59,7 +59,7 @@ Simulate the SNP or CN information of normal samples using ```simulate_normal_sa
   - mode. Running mode, 'train' or 'predict'.
 
 ### 2.2 Train Your Own Data
-Translation: Using ```simulate_normal_samples.py```, you can train simulated samples based on your mutation detection data. Refer to the following script.
+Using ```simulate_normal_samples.py```, you can train simulated samples based on your mutation detection data. Refer to the following script.
 ```bash
 # Example with all parameters
     python simulate_normal_samples.py 
@@ -78,7 +78,7 @@ Translation: Using ```simulate_normal_samples.py```, you can train simulated sam
     -m train 
 ```
 ### 2.3 Prediction
-Translation: Using ```simulate_normal_samples.py```, you can predict simulated samples based on your mutation detection data. 
+Using ```simulate_normal_samples.py```, you can predict simulated samples based on your mutation detection data. 
 It is worth noting that during the prediction process, the ```batch_size```, ```genomatic_length```, and ```latent_dim``` need to remain consistent with those used during training.
 Refer to the following script.
 ```bash
@@ -98,8 +98,14 @@ Refer to the following script.
 ```
 ## 3. Inferring Subclonal Populations
 
-### 3.1 Quick Start
+### 3.1 Parameter meaning
+```inferring_subclone_populations.py``` has 5 parameters:
+  - data_path, The path for storing mutation SNV information, which requires the use of ```.npy``` format files. 
+  - groundTruth, The folder path for ground truth.
+  - encode_path, The path to load the weights of the encoding model.
+  - weight_path, The path to save trained weights.
+  - mode, Running mode, optional 'train' or 'predict'.
 
 ### 3.2 Train Your Own Data
-
+    
 ### 3.3 Prediction
